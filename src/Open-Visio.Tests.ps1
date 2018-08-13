@@ -59,7 +59,7 @@ Describe "Open-Visio" {
 		}
 		
 		AfterEach {
-			$null = Close-Visio $visioDoc;
+			# $null = Close-Visio $visioDoc;
 		}
 	}
 }
