@@ -4,11 +4,11 @@ Function Open-Visio {
 <#
 .SYNOPSIS
 
-Opens a specific Microsoft Visio document.
+Opens the specified Microsoft Visio document.
 
 .DESCRIPTION
 
-Opens a specific Microsoft Visio document.
+Opens the specified Microsoft Visio document.
 
 The path to the Microsoft Visio document has to be provided as input by either positional or named parameter of type string.
 
@@ -42,11 +42,20 @@ BEGIN
 	trap { Log-Exception $_; break; }
 
 	$OutputParameter = $null;
+	
+	# instantiating the COM object
+	# NOTE: this will not work reliably
+	# $ea = [Visio.Application]::new();
+	$visio = New-Object -ComObject Visio.Application;
 }
 
 PROCESS
 {
 	trap { Log-Exception $_; break; }
+	
+	$result = $visio.Documents.Open($Path);
+	
+	$OutputParameter = $result;
 }
 
 END
