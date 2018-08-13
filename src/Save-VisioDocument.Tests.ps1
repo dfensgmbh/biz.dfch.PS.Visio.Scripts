@@ -102,15 +102,14 @@ Describe "Save-VisioDocument" {
 			$visioDoc = $visioDocs.Add("");
 		}
 		
-		It "FailsAndReturnsFalseWhenInvokingWithNotYetExistingOpenedVisioDocWithoutPath" {
+		It "ThrowsComExceptionWhenInvokingWithNotYetExistingOpenedVisioDocWithoutPath" {
 			
 			# Arrange
 			
 			# Act
-			$result = Save-VisioDocument $visioDoc;
-			
+						
 			# Assert
-			$result | Should Be $false;
+			{ Save-VisioDocument $visioDoc; } | Should ThrowException 'COMException';
 		}
 		
 		AfterEach {
