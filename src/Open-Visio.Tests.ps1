@@ -42,7 +42,7 @@ Describe "Open-Visio" {
 	
 	Context "Open-Visio-PositiveTests" {
 		
-		$pathToVisioDoc = "$here\SampleVisio.vsd";
+		$pathToVisioDoc = "$here\SampleVisio.vsdx";
 		
 		BeforeEach {
 			$visioDoc = Open-Visio -Path $pathToVisioDoc;

@@ -14,7 +14,7 @@ The path to the Microsoft Visio document has to be provided as input by either p
 
 .EXAMPLE
 
-$visio = Open-Visio C:\PATH\TO\MyVisio.vsd
+$visio = Open-Visio C:\PATH\TO\MyVisio.vsdx
 
 Path to the Microsoft Visio document is passed as a positional parameter to the Cmdlet.
 
