@@ -43,9 +43,6 @@ BEGIN
 
 	$OutputParameter = $null;
 	
-	# instantiating the COM object
-	# NOTE: this will not work reliably
-	# $ea = [Visio.Application]::new();
 	$visio = New-Object -ComObject Visio.Application;
 }
 
