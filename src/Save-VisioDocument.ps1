@@ -47,7 +47,7 @@ PARAM
 	[Parameter(Mandatory = $true, Position = 0, ValueFromPipeline = $true)]
 	$VisioDoc
 	,
-	[ValidateScript( { Test-Path($_); } )]
+	[ValidateScript( { Test-Path(Split-Path $_ -Parent) } )]
 	[ValidateNotNullOrEmpty()]
 	[Parameter(Mandatory = $false)]
 	[string] $Path
