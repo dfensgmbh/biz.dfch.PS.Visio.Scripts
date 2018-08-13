@@ -1,6 +1,6 @@
 #Requires -Modules @{ ModuleName = 'biz.dfch.PS.System.Logging'; ModuleVersion = '1.4.1' }
 
-Function Close-Visio {
+Function Close-VisioDocument {
 <#
 .SYNOPSIS
 
@@ -14,13 +14,13 @@ The Visio document to has to be provided as input by either pipe, positional par
 
 .EXAMPLE
 
-$result = Close-Visio $visioDoc
+$result = Close-VisioDocument $visioDoc
 
 Visio document is passed as a positional parameter to the Cmdlet.
 
 .EXAMPLE
 
-$result = $visioDoc | Close-Visio
+$result = $visioDoc | Close-VisioDocument
 
 Visio document is piped to the Cmdlet.
 

@@ -6,8 +6,8 @@ $sut = (Split-Path -Leaf $MyInvocation.MyCommand.Path).Replace(".Tests.", ".");
 Describe "Get-Page" {
 	
 	. "$here\$sut";
-	. "$here\Open-Visio.ps1";
-	. "$here\Close-Visio.ps1";
+	. "$here\Open-VisioDocument.ps1";
+	. "$here\Close-VisioDocument.ps1";
 	
 	Context "Get-Page-ValidationTests" {
 		It "Warmup" -Test {
@@ -47,7 +47,7 @@ Describe "Get-Page" {
 		$pathToVisioDoc = "$here\SampleVisio.vsdx";
 		
 		BeforeEach {
-			$visioDoc = Open-Visio -Path $pathToVisioDoc;
+			$visioDoc = Open-VisioDocument -Path $pathToVisioDoc;
 		}
 		
 		It "RetrievesAndReturnsListOfAvailablePagesOfVisioDocumentWhenInvokingWithValidOpenedVisioDocument" {
@@ -86,7 +86,7 @@ Describe "Get-Page" {
 		}
 		
 		AfterEach {
-			$null = Close-Visio $visioDoc;
+			$null = Close-VisioDocument $visioDoc;
 		}
 	}
 }

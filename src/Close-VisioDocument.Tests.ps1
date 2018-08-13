@@ -3,12 +3,12 @@
 $here = Split-Path -Parent $MyInvocation.MyCommand.Path;
 $sut = (Split-Path -Leaf $MyInvocation.MyCommand.Path).Replace(".Tests.", ".");
 
-Describe "Open-Visio" {
+Describe "Close-VisioDocument" {
 	
 	. "$here\$sut";
-	. "$here\Close-Visio.ps1";
+	. "$here\Open-VisioDocument.ps1";
 	
-	Context "Open-Visio-ValidationTests" {
+	Context "Close-VisioDocument-ValidationTests" {
 		It "Warmup" -Test {
 			
 			# Arrange
@@ -19,47 +19,45 @@ Describe "Open-Visio" {
 			$true | Should Be $true;
 		}
 		
-		It "ThrowsParameterBindingValidationExceptionWhenInvokingWithNullPath" {
+		It "ThrowsParameterBindingValidationExceptionWhenInvokingWithNullVisioDoc" {
 			
 			# Arrange
 
 			# Act
-			{ Open-Visio -Path $null; } | Should ThrowException 'ParameterBindingValidationException';
-
-			# Assert
-		}
-		
-		It "ThrowsParameterBindingValidationExceptionWhenInvokingWithNotExistingPath" {
-			
-			# Arrange
-
-			# Act
-			{ Open-Visio -Path "C:\arbitrary"; } | Should ThrowException 'ParameterBindingValidationException';
+			{ Close-VisioDocument -VisioDoc $null; } | Should ThrowException 'ParameterBindingValidationException';
 
 			# Assert
 		}
 	}
 	
-	Context "Open-Visio-PositiveTests" {
+	Context "Close-VisioDocument-PositiveTests" {
 		
 		$pathToVisioDoc = "$here\SampleVisio.vsdx";
 		
 		BeforeEach {
-			$visioDoc = Open-Visio -Path $pathToVisioDoc;
+			$visioDoc = Open-VisioDocument -Path $pathToVisioDoc;
 		}
 		
-		It "OpensAndReturnsVisioDocWhenInvokingWithValidPathToExistingVisioDoc" {
+		It "ClosesVisioDocAndApplicationAndReturnsTrueWhenInvokingWithValidOpenedVisioDoc" {
 			
 			# Arrange
 			
 			# Act
+			$result = Close-VisioDocument $visioDoc;
 			
 			# Assert
-			$visioDoc | Should Not Be $null;
+			$result | Should Be $true;
 		}
 		
-		AfterEach {
-			$null = Close-Visio $visioDoc;
+		It "ClosesVisioDocAndApplicationAndReturnsTrueWhenInvokingByPipingValidOpenedVisioDoc" {
+			
+			# Arrange
+			
+			# Act
+			$result = $visioDoc | Close-VisioDocument;
+			
+			# Assert
+			$result | Should Be $true;
 		}
 	}
 }

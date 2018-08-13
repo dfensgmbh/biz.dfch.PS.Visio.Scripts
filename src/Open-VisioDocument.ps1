@@ -1,6 +1,6 @@
 #Requires -Modules @{ ModuleName = 'biz.dfch.PS.System.Logging'; ModuleVersion = '1.4.1' }
 
-Function Open-Visio {
+Function Open-VisioDocument {
 <#
 .SYNOPSIS
 
@@ -14,7 +14,7 @@ The path to the Microsoft Visio document has to be provided as input by either p
 
 .EXAMPLE
 
-$visio = Open-Visio C:\PATH\TO\MyVisio.vsdx
+$visioDoc = Open-VisioDocument C:\PATH\TO\MyVisio.vsdx
 
 Path to the Microsoft Visio document is passed as a positional parameter to the Cmdlet.
 

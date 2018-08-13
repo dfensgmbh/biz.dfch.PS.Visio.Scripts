@@ -3,12 +3,12 @@
 $here = Split-Path -Parent $MyInvocation.MyCommand.Path;
 $sut = (Split-Path -Leaf $MyInvocation.MyCommand.Path).Replace(".Tests.", ".");
 
-Describe "Close-Visio" {
+Describe "Open-VisioDocument" {
 	
 	. "$here\$sut";
-	. "$here\Open-Visio.ps1";
+	. "$here\Close-VisioDocument.ps1";
 	
-	Context "Close-Visio-ValidationTests" {
+	Context "Open-VisioDocument-ValidationTests" {
 		It "Warmup" -Test {
 			
 			# Arrange
@@ -19,45 +19,47 @@ Describe "Close-Visio" {
 			$true | Should Be $true;
 		}
 		
-		It "ThrowsParameterBindingValidationExceptionWhenInvokingWithNullVisioDoc" {
+		It "ThrowsParameterBindingValidationExceptionWhenInvokingWithNullPath" {
 			
 			# Arrange
 
 			# Act
-			{ Close-Visio -VisioDoc $null; } | Should ThrowException 'ParameterBindingValidationException';
+			{ Open-VisioDocument -Path $null; } | Should ThrowException 'ParameterBindingValidationException';
+
+			# Assert
+		}
+		
+		It "ThrowsParameterBindingValidationExceptionWhenInvokingWithNotExistingPath" {
+			
+			# Arrange
+
+			# Act
+			{ Open-VisioDocument -Path "C:\arbitrary"; } | Should ThrowException 'ParameterBindingValidationException';
 
 			# Assert
 		}
 	}
 	
-	Context "Close-Visio-PositiveTests" {
+	Context "Open-VisioDocument-PositiveTests" {
 		
 		$pathToVisioDoc = "$here\SampleVisio.vsdx";
 		
 		BeforeEach {
-			$visioDoc = Open-Visio -Path $pathToVisioDoc;
+			$visioDoc = Open-VisioDocument -Path $pathToVisioDoc;
 		}
 		
-		It "ClosesVisioDocAndApplicationAndReturnsTrueWhenInvokingWithValidOpenedVisioDoc" {
+		It "OpensAndReturnsVisioDocWhenInvokingWithValidPathToExistingVisioDoc" {
 			
 			# Arrange
 			
 			# Act
-			$result = Close-Visio $visioDoc;
 			
 			# Assert
-			$result | Should Be $true;
+			$visioDoc | Should Not Be $null;
 		}
 		
-		It "ClosesVisioDocAndApplicationAndReturnsTrueWhenInvokingByPipingValidOpenedVisioDoc" {
-			
-			# Arrange
-			
-			# Act
-			$result = $visioDoc | Close-Visio;
-			
-			# Assert
-			$result | Should Be $true;
+		AfterEach {
+			$null = Close-VisioDocument $visioDoc;
 		}
 	}
 }
