@@ -53,6 +53,9 @@ PROCESS
 	
 	$OutputParameter = $false;
 	
+	# automatically choose "No" on prompt for saving
+	$visioDoc.Application.AlertResponse = 7;
+	
 	$VisioDoc.Close();
 	$VisioDoc.Application.Quit();
 	
