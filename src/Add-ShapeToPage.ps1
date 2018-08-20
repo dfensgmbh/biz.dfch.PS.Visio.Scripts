@@ -51,11 +51,11 @@ PARAM
 	[Parameter(Mandatory = $true, Position = 1, ParameterSetName = 'pageName')]
 	[string] $PageName
 	,
-	[ValidateRange(0, [double]::MaxValue)]
+	[ValidateRange([double]::MinValue, [double]::MaxValue)]
 	[Parameter(Mandatory = $true, Position = 2)]
 	[double] $PositionX
 	,
-	[ValidateRange(0, [double]::MaxValue)]
+	[ValidateRange([double]::MinValue, [double]::MaxValue)]
 	[Parameter(Mandatory = $true, Position = 3)]
 	[double] $PositionY
 	,
