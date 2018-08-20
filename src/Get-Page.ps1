@@ -14,7 +14,7 @@ The Visio document has to be provided as input by either positional or named par
 
 .EXAMPLE
 
-Get-Page $visioDoc
+$pages = Get-Page $visioDoc
 
 Visio document is passed as a positional parameter to the Cmdlet.
 

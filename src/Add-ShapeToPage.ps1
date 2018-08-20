@@ -14,13 +14,13 @@ Visio document, page, position and size have to be provided as input by either p
 
 .EXAMPLE
 
-Add-Shape $visioDoc $page 1 1 10 20
+$shape = Add-ShapeToPage $visioDoc $page 1 1 10 20
 
 Visio document, page, position and size are passed as a positional parameters to the Cmdlet.
 
 .EXAMPLE
 
-Add-Shape $visioDoc "page-1" 1.0 1.0 2.0 3.0
+$shape = Add-ShapeToPage $visioDoc "page-1" 1.0 1.0 2.0 3.0
 
 Visio document, page name, position and size are passed as a positional parameters to the Cmdlet.
 

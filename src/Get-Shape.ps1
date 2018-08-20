@@ -14,9 +14,9 @@ The page has to be provided as input by either positional or named parameter.
 
 .EXAMPLE
 
-Get-Shape $page
+$shapes = Get-Shape $page
 
-Page is passed as a positional parameters to the Cmdlet.
+Page is passed as a positional parameter to the Cmdlet.
 
 .LINK
 
