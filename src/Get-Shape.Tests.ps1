@@ -7,7 +7,8 @@ Describe "Get-Shape" {
 	
 	. "$here\$sut";
 	. "$here\Open-VisioDocument.ps1";
-	. "$here\Get-Page";
+	. "$here\Get-Page.ps1";
+	. "$here\Add-ShapeToPage.ps1";
 	. "$here\Close-VisioDocument.ps1";
 	
 	Context "Get-Shape-ValidationTests" {
