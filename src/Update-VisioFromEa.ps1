@@ -59,10 +59,10 @@ PROCESS
 	$eaPackageName = "Dekompositionsmodell";
 	$visioPageName = "Mapping";
 	
-	$xStart = 1.75;
+	$xStart = 1.70;
 	$yStart = 11.0;
-	$xGap = 1.18;
-	$yGap = 0.63;
+	$xGap = 1.10;
+	$yGap = 0.60;
 	
 	
 	$eaRepo = Open-EaRepository $PathToEaProject;
@@ -84,6 +84,11 @@ PROCESS
 		$x = $xStart;
 		
 		$components = $subPkg.Elements |? MetaType -eq 'Component';
+		
+		if ($null -eq $components)
+		{
+			continue;
+		}
 		
 		foreach ($comp in $components)
 		{
