@@ -40,6 +40,17 @@ Describe "Get-Page" {
 			
 			#Assert
 		}
+		
+		It "ThrowsParameterBindingValidationExceptionWhenInvokingWithEmptyName" {
+			
+			# Arrange
+			$visioDoc = New-Object -ComObject Scripting.Dictionary;
+			
+			# Act
+			{ Get-Page -VisioDoc $visioDoc -Name ""; } | Should ThrowException 'ParameterBindingValidationException';
+			
+			#Assert
+		}
 	}
 	
 	Context "Get-Page-PositiveTests" {
