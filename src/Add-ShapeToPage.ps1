@@ -59,11 +59,11 @@ PARAM
 	[Parameter(Mandatory = $true, Position = 3)]
 	[double] $PositionY
 	,
-	[ValidateRange(0.5, [double]::MaxValue)]
+	[ValidateRange(0.1, [double]::MaxValue)]
 	[Parameter(Mandatory = $true, Position = 4)]
 	[double] $Height
 	,
-	[ValidateRange(0.5, [double]::MaxValue)]
+	[ValidateRange(0.1, [double]::MaxValue)]
 	[Parameter(Mandatory = $true, Position = 5)]
 	[double] $Width
 	,
