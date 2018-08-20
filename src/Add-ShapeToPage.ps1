@@ -33,7 +33,7 @@ GitHub Repository: https://github.com/dfensgmbh/biz.dfch.PS.Visio.Scripts
 [CmdletBinding(
     SupportsShouldProcess = $true
 	,
-    ConfirmImpact = "Low"
+    ConfirmImpact = "Medium"
 	,
 	DefaultParameterSetName = 'pageObject'
 )]
