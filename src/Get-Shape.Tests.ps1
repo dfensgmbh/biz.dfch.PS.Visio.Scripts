@@ -63,7 +63,7 @@ Describe "Get-Shape" {
 		
 		BeforeEach {
 			$visioDoc = Open-VisioDocument -Path $pathToVisioDoc;
-			$page = Get-Page $pageName;
+			$page = Get-Page $visioDoc -Name $pageName;
 			Add-ShapeToPage -VisioDoc $visioDoc -Page $page -PositionX 1.0 -PositionY 1.0 -Height 1.0 -Width 1.0 -EaGuid $eaGuid;
 			$shape = Add-ShapeToPage -VisioDoc $visioDoc -Page $page -PositionX 1.0 -PositionY 1.0 -Height 1.0 -Width 1.0;
 		}
