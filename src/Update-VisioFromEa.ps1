@@ -59,30 +59,53 @@ PROCESS
 	$eaPackageName = "Dekompositionsmodell";
 	$visioPageName = "Mapping";
 	
+	$xStart = 1.75;
+	$yStart = 11.0;
+	$xGap = 1.18;
+	$yGap = 0.63;
+	
 	
 	$eaRepo = Open-EaRepository $PathToEaProject;
 	$eaModel = Get-Model $eaRepo -Name $eaModelName;
 	$eaPackage = Get-Package $eaModel -Name $eaPackageName -Recurse;
 	Contract-Assert ($eaPackage);
 	
-	$eaSubpackages = $eaPackage.Packages;
+	$eaSubpackages = Get-Package $eaPackage -Recurse;
 	
 	$visioDoc = Open-VisioDocument $PathToVisioFile;
 	$visioPage = Get-Page -VisioDoc $visioDoc -Name $visioPageName;
+	Contract-Assert ($visioPage);
+	
+	$y = $yStart;
 	
 	foreach ($subPkg in $eaSubpackages)
 	{
-		foreach ($pkg in $subPkg.Packages)
+		$count = 0;
+		$x = $xStart;
+		
+		$components = $subPkg.Elements |? MetaType -eq 'Component';
+		
+		foreach ($comp in $components)
 		{
-			$shape = Get-Shape $visioPage -EaGuid $pkg.PackageGUID;
+			$count++;
+		
+			$shape = Get-Shape $visioPage -EaGuid $comp.ElementGUID;
 			
 			if ($null -eq $shape)
 			{
-				# DFTODO - change position every iteration
-				# DFTODO - adjust size
-				$addedShape = Add-ShapeToPage -VisioDoc $visioDoc -PageName $visioPageName -PositionX 1.0 -PositionY 1.0 -Height 1.0 -Width 1.0 -EaGuid $pkg.PackageGUID -ShapeText $pkg.Name;
+				$addedShape = Add-ShapeToPage -VisioDoc $visioDoc -PageName $visioPageName -PositionX $x -PositionY $y -Height 0.48 -Width 0.88 -EaGuid $comp.ElementGUID -ShapeText $comp.Name;
+			}
+			
+			$x = $x + $xGap;
+			
+			if (($count % 13) -eq 0)
+			{
+				$x = $xStart;
+				$y = $y - $yGap;
 			}
 		}
+		
+		$y = $y - $yGap;
 	}
 	
 	$result = $visioDoc | Save-VisioDocument
