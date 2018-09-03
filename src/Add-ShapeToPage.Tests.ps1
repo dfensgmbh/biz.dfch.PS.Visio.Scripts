@@ -107,13 +107,13 @@ Describe "Add-ShapeToPage" {
 			#Assert
 		}
 		
-		It "ThrowsParameterBindingValidationExceptionWhenInvokingWithNullShapeText" {
+		It "ThrowsParameterBindingValidationExceptionWhenInvokingWithNullText" {
 			
 			# Arrange
 			$visioDoc = New-Object -ComObject Scripting.Dictionary;
 			
 			# Act
-			{ Add-ShapeToPage -VisioDoc $visioDoc -PageName "Page-1" -PositionX 1.0 -PositionY 1.0 -Height 1.0 -Width 1.0 -ShapeText $null; } | Should ThrowException 'ParameterBindingValidationException';
+			{ Add-ShapeToPage -VisioDoc $visioDoc -PageName "Page-1" -PositionX 1.0 -PositionY 1.0 -Height 1.0 -Width 1.0 -Text $null; } | Should ThrowException 'ParameterBindingValidationException';
 			
 			#Assert
 		}
@@ -138,13 +138,13 @@ Describe "Add-ShapeToPage" {
 			$result | Should Not Be $null;
 		}
 		
-		It "AddsShapeToPageAndReturnsShapeWithTextSetWhenInvokingWithValidMandatoryParametersAndOptionalShapeTextParameter" {
+		It "AddsShapeToPageAndReturnsShapeWithTextSetWhenInvokingWithValidMandatoryParametersAndOptionalTextParameter" {
 			
 			# Arrange
 			$text = "arbitrary";
 			
 			# Act
-			$result = Add-ShapeToPage -VisioDoc $visioDoc -PageName "Page-1" -PositionX 1.0 -PositionY 1.0 -Height 1.0 -Width 1.0 -ShapeText $text;
+			$result = Add-ShapeToPage -VisioDoc $visioDoc -PageName "Page-1" -PositionX 1.0 -PositionY 1.0 -Height 1.0 -Width 1.0 -Text $text;
 			
 			# Assert
 			$result | Should Not Be $null;
