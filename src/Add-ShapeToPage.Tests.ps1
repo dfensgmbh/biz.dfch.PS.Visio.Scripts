@@ -63,46 +63,24 @@ Describe "Add-ShapeToPage" {
 			#Assert
 		}
 		
-		It "ThrowsParameterBindingValidationExceptionWhenInvokingWithPositionXLessZero" {
+		It "ThrowsParameterBindingValidationExceptionWhenInvokingWithHeightLess0.1" {
 			
 			# Arrange
 			$visioDoc = New-Object -ComObject Scripting.Dictionary;
 			
 			# Act
-			{ Add-ShapeToPage -VisioDoc $visioDoc -PageName "Page-1" -PositionX -0.1 -PositionY 1.0 -Height 1.0 -Width 1.0; } | Should ThrowException 'ParameterBindingValidationException';
+			{ Add-ShapeToPage -VisioDoc $visioDoc -PageName "Page-1" -PositionX 1.0 -PositionY 1.0 -Height 0.0 -Width 1.0; } | Should ThrowException 'ParameterBindingValidationException';
 			
 			#Assert
 		}
 		
-		It "ThrowsParameterBindingValidationExceptionWhenInvokingWithPositionYLessZero" {
+		It "ThrowsParameterBindingValidationExceptionWhenInvokingWithWidthLess0.1" {
 			
 			# Arrange
 			$visioDoc = New-Object -ComObject Scripting.Dictionary;
 			
 			# Act
-			{ Add-ShapeToPage -VisioDoc $visioDoc -PageName "Page-1" -PositionX 1.0 -PositionY -0.1 -Height 1.0 -Width 1.0; } | Should ThrowException 'ParameterBindingValidationException';
-			
-			#Assert
-		}
-		
-		It "ThrowsParameterBindingValidationExceptionWhenInvokingWithHeightLess0.5" {
-			
-			# Arrange
-			$visioDoc = New-Object -ComObject Scripting.Dictionary;
-			
-			# Act
-			{ Add-ShapeToPage -VisioDoc $visioDoc -PageName "Page-1" -PositionX 1.0 -PositionY 1.0 -Height 0.4 -Width 1.0; } | Should ThrowException 'ParameterBindingValidationException';
-			
-			#Assert
-		}
-		
-		It "ThrowsParameterBindingValidationExceptionWhenInvokingWithWidthLess0.5" {
-			
-			# Arrange
-			$visioDoc = New-Object -ComObject Scripting.Dictionary;
-			
-			# Act
-			{ Add-ShapeToPage -VisioDoc $visioDoc -PageName "Page-1" -PositionX 1.0 -PositionY 1.0 -Height 1.0 -Width 0.4; } | Should ThrowException 'ParameterBindingValidationException';
+			{ Add-ShapeToPage -VisioDoc $visioDoc -PageName "Page-1" -PositionX 1.0 -PositionY 1.0 -Height 1.0 -Width 0.0; } | Should ThrowException 'ParameterBindingValidationException';
 			
 			#Assert
 		}
@@ -114,6 +92,17 @@ Describe "Add-ShapeToPage" {
 			
 			# Act
 			{ Add-ShapeToPage -VisioDoc $visioDoc -PageName "Page-1" -PositionX 1.0 -PositionY 1.0 -Height 1.0 -Width 1.0 -Text $null; } | Should ThrowException 'ParameterBindingValidationException';
+			
+			#Assert
+		}
+		
+		It "ThrowsParameterBindingValidationExceptionWhenInvokingWithEmptyText" {
+			
+			# Arrange
+			$visioDoc = New-Object -ComObject Scripting.Dictionary;
+			
+			# Act
+			{ Add-ShapeToPage -VisioDoc $visioDoc -PageName "Page-1" -PositionX 1.0 -PositionY 1.0 -Height 1.0 -Width 1.0 -Text " "; } | Should ThrowException 'ParameterBindingValidationException';
 			
 			#Assert
 		}
@@ -132,10 +121,14 @@ Describe "Add-ShapeToPage" {
 			# Arrange
 			
 			# Act
-			$result = Add-ShapeToPage -VisioDoc $visioDoc -PageName "Page-1" -PositionX 1.0 -PositionY 1.0 -Height 1.0 -Width 1.0;
+			$result = Add-ShapeToPage -VisioDoc $visioDoc -PageName "Page-1" -PositionX 1.0 -PositionY 2.0 -Height 3.0 -Width 4.0;
 			
 			# Assert
 			$result | Should Not Be $null;
+			$result.Cells("PinX").ResultIU | Should Be 3.0;
+			$result.Cells("PinY").ResultIU | Should Be 3.5;
+			$result.Cells("Height").ResultIU | Should Be 3.0;
+			$result.Cells("Width").ResultIU | Should Be 4.0;
 		}
 		
 		It "AddsShapeToPageAndReturnsShapeWithTextSetWhenInvokingWithValidMandatoryParametersAndOptionalTextParameter" {
