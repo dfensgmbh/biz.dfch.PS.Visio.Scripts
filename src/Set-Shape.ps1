@@ -76,22 +76,32 @@ PROCESS
 	
 	if ($ShapeType -eq 'Rectangle')
 	{
-		if ($Height -ne $null)
+		$pinX = $Shape.Cells("PinX").ResultIU;
+		$pinY = $Shape.Cells("PinY").ResultIU;
+		$h = $Shape.Cells("Height").ResultIU;
+		$w = $Shape.Cells("Width").ResultIU;
+
+		if ($PositionX -eq $null)
 		{
-			$Shape.Cells("Height") = $Height;
+			$PositionX = $pinX - ($w / 2.0);
 		}
-		if ($Width -ne $null)
+		if ($PositionY -eq $null)
 		{
-			$Shape.Cells("Width") = $Width;
+			$PositionY = $pinY - ($h / 2.0);
 		}
-		if ($PositionX -ne $null)
+		if ($Height -eq $null)
 		{
-			$Shape.Cells("PinX") = $PositionX + ($Shape.Cells("Width").ResultIU / 2.0);
+			$Height = $h;
 		}
-		if ($PositionY -ne $null)
+		if ($Width -eq $null)
 		{
-			$Shape.Cells("PinY") = $PositionY + ($Shape.Cells("Height").ResultIU / 2.0);
-		}		
+			$Width = $w;
+		}
+		
+		$Shape.Cells("Height") = $Height;
+		$Shape.Cells("Width") = $Width;
+		$Shape.Cells("PinX") = $PositionX + ($Width / 2.0);
+		$Shape.Cells("PinY") = $PositionY + ($Height / 2.0);
 	}
 	
 	$Shape.Text = $Text;
