@@ -102,7 +102,7 @@ Describe "Add-ShapeToPage" {
 			$visioDoc = New-Object -ComObject Scripting.Dictionary;
 			
 			# Act
-			{ Add-ShapeToPage -VisioDoc $visioDoc -PageName "Page-1" -PositionX 1.0 -PositionY 1.0 -Height 1.0 -Width 1.0 -Text " "; } | Should ThrowException 'ParameterBindingValidationException';
+			{ Add-ShapeToPage -VisioDoc $visioDoc -PageName "Page-1" -PositionX 1.0 -PositionY 1.0 -Height 1.0 -Width 1.0 -Text ""; } | Should ThrowException 'ParameterBindingValidationException';
 			
 			#Assert
 		}

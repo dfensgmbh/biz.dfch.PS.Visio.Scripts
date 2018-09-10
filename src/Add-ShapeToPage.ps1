@@ -67,7 +67,7 @@ PARAM
 	[Parameter(Mandatory = $true, Position = 5)]
 	[double] $Width
 	,
-	[ValidateNotNull()]
+	[ValidateNotNullOrEmpty()]
 	[Parameter(Mandatory = $false)]
 	[string] $Text = ''
 	,
