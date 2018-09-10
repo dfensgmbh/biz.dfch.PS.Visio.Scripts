@@ -140,6 +140,10 @@ Describe "Set-Shape" {
 			
 			# Assert
 			$result | Should Not Be $null;
+			$result.Cells("PinX").ResultIU | Should Be 2.0;
+			$result.Cells("PinY").ResultIU | Should Be 1.5;
+			$result.Cells("Height").ResultIU | Should Be 1.0;
+			$result.Cells("Width").ResultIU | Should Be 2.0;
 			$result.Text | Should Be $text;
 		}
 		
@@ -153,6 +157,10 @@ Describe "Set-Shape" {
 			
 			# Assert
 			$result | Should Not Be $null;
+			$result.Cells("PinX").ResultIU | Should Be 2.0;
+			$result.Cells("PinY").ResultIU | Should Be 1.5;
+			$result.Cells("Height").ResultIU | Should Be 1.0;
+			$result.Cells("Width").ResultIU | Should Be 2.0;
 			$result.Data1 | Should Be $eaGuid.ToString();
 		}
 		
