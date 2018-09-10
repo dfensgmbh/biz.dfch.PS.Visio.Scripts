@@ -98,10 +98,10 @@ PROCESS
 			$Width = $w;
 		}
 		
-		$Shape.Cells("Height") = $Height;
-		$Shape.Cells("Width") = $Width;
-		$Shape.Cells("PinX") = $PositionX + ($Width / 2.0);
-		$Shape.Cells("PinY") = $PositionY + ($Height / 2.0);
+		$Shape.Cells("Height").FormulaU = $Height;
+		$Shape.Cells("Width").FormulaU = $Width;
+		$Shape.Cells("PinX").FormulaU = $PositionX + ($Width / 2.0);
+		$Shape.Cells("PinY").FormulaU = $PositionY + ($Height / 2.0);
 	}
 	
 	$Shape.Text = $Text;
