@@ -14,7 +14,7 @@ Shape has to be provided as input by either positional or named parameter. Prope
 
 .EXAMPLE
 
-$shape = Set-Shape $shape -PositionX 1 -PositionY 1 -Height 10 -Width 20 -Text "arbitraryText";
+$shape = Set-Shape $shape -PositionX 1.0 -PositionY 1.0 -Height 10.0 -Width 20.0 -Text "arbitraryText";
 
 Shape is passed as a positional parameter to the Cmdlet. Position, size and text are passed as named parameters to the Cmdlet.
 
