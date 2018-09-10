@@ -70,7 +70,7 @@ Describe "Set-Shape" {
 			$shape = New-Object -ComObject Scripting.Dictionary;
 			
 			# Act
-			{ Set-Shape -Shape $shape -PositionX 1.0 -PositionY 1.0 -Height 1.0 -Width 1.0 -Text " "; } | Should ThrowException 'ParameterBindingValidationException';
+			{ Set-Shape -Shape $shape -PositionX 1.0 -PositionY 1.0 -Height 1.0 -Width 1.0 -Text ""; } | Should ThrowException 'ParameterBindingValidationException';
 			
 			#Assert
 		}
