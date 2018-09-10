@@ -40,6 +40,17 @@ Describe "Save-VisioDocument" {
 
 			# Assert
 		}
+		
+		It "ThrowsParameterBindingValidationExceptionWhenInvokingWithEmptyPath" {
+			
+			# Arrange
+			$visioDoc = New-Object -ComObject Scripting.Dictionary;
+
+			# Act
+			{ Save-VisioDocument -VisioDoc $visioDoc -Path ""; } | Should ThrowException 'ParameterBindingValidationException';
+
+			# Assert
+		}
 	}
 	
 	Context "Save-VisioDocument-PositiveTests" {
