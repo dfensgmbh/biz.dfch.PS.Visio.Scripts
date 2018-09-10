@@ -69,7 +69,7 @@ PARAM
 	,
 	[ValidateNotNullOrEmpty()]
 	[Parameter(Mandatory = $false)]
-	[string] $Text = ''
+	[string] $Text
 	,
 	[ValidateSet('Rectangle')]
 	[Parameter(Mandatory = $false)]
@@ -105,7 +105,10 @@ PROCESS
 		$shape = $Page.DrawRectangle($PositionX, $PositionY, $PositionX + $Width, $PositionY + $Height);
 	}
 	
-	$shape.Text = $Text;
+	if ($null -ne $Text)
+	{
+		$shape.Text = $Text;
+	}
 	
 	if ($null -ne $EaGuid)
 	{
