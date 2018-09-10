@@ -29,6 +29,16 @@ Describe "Open-VisioDocument" {
 			# Assert
 		}
 		
+		It "ThrowsParameterBindingValidationExceptionWhenInvokingWithEmptyPath" {
+			
+			# Arrange
+
+			# Act
+			{ Open-VisioDocument -Path ""; } | Should ThrowException 'ParameterBindingValidationException';
+
+			# Assert
+		}
+		
 		It "ThrowsParameterBindingValidationExceptionWhenInvokingWithNotExistingPath" {
 			
 			# Arrange
