@@ -81,19 +81,19 @@ PROCESS
 		$h = $Shape.Cells("Height").ResultIU;
 		$w = $Shape.Cells("Width").ResultIU;
 
-		if ($PositionX -eq $null)
+		if ($PositionX -eq 0)
 		{
 			$PositionX = $pinX - ($w / 2.0);
 		}
-		if ($PositionY -eq $null)
+		if ($PositionY -eq 0)
 		{
 			$PositionY = $pinY - ($h / 2.0);
 		}
-		if ($Height -eq $null)
+		if ($Height -eq 0)
 		{
 			$Height = $h;
 		}
-		if ($Width -eq $null)
+		if ($Width -eq 0)
 		{
 			$Width = $w;
 		}
